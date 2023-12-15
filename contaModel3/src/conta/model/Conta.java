@@ -7,7 +7,7 @@ public class Conta {
 	private int tipo;
 	private String titular;
 	private float saldo;
-	
+
 	// Método Construtor
 	public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
 		super();
@@ -17,44 +17,44 @@ public class Conta {
 		this.titular = titular;
 		this.saldo = saldo;
 	}
-	
+
 	// Métodos
 	public boolean sacar(float valor) {
-		
+
 		if (this.getSaldo() < valor) {
 			System.out.println("\nSaldo Insuficiente!");
 			return false;
 		}
-		
+
 		this.setSaldo(this.getSaldo() - valor);
 		return true;
 	}
-	
+
 	public void depositar(float valor) {
 		this.setSaldo(this.getSaldo() + valor);
 	}
 
 	public void visualizar() {
 		String tipo = "";
-		
-		switch(this.tipo) {
-		case 1: 
+
+		switch (this.tipo) {
+		case 1:
 			tipo = "Conta Corrente";
 			break;
-		
+
 		case 2:
 			tipo = "Conta Poupança";
 			break;
 		}
-		
-		System.out.println("\n\n***********************************************************");
-		System.out.println("Dados da Conta:");
-		System.out.println("***********************************************************");
-		System.out.println("Número da conta: " + this.numero);
+
+		System.out.println("\n\n*****************************************************");
+		System.out.println("\n\t\tDados da Conta:\n");
+		System.out.println("*****************************************************");
+		System.out.println("\nNúmero da conta: " + this.numero);
 		System.out.println("Agência: " + this.agencia);
 		System.out.println("Tipo da conta: " + tipo);
 		System.out.println("Titular: " + this.titular);
-		System.out.println("Saldo: " + this.saldo);
+		System.out.println("Saldo: " + this.saldo + "\n");
 	}
 
 	// Getters and Setters
@@ -97,7 +97,5 @@ public class Conta {
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
-	
-	
-	
+
 }
