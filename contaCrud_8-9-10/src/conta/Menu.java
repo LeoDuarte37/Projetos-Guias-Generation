@@ -16,9 +16,9 @@ public class Menu {
 		// Criando Objeto da Classe ContaControlller
 		ContaController contas = new ContaController();
 		
-		int opcao, numero, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		ContaCorrente cc1 = new ContaCorrente(contas.gerarNumero(), 123, 1, "Léo", 1000f, 100f);
 		contas.cadastrar(cc1);
@@ -96,14 +96,15 @@ public class Menu {
 				}
 				
 				keyPress();
-			
 				break;
+				
 			case 2:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Listar todas as Contas\n\n");
 				contas.listarTodas();
-				keyPress();
 				
+				keyPress();
 				break;
+				
 			case 3:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Consultar dados da Conta - por número\n\n");
 				
@@ -112,9 +113,9 @@ public class Menu {
 				
 				contas.procurarPorNumero(numero);
 				
-				keyPress();
-				
+				keyPress();	
 				break;
+				
 			case 4:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Atualizar dados da Conta\n\n");
 				
@@ -160,9 +161,9 @@ public class Menu {
 					System.out.println("\nA conta não foi encontrada!");
 				}
 				
-				keyPress();
-					
+				keyPress();		
 				break;
+				
 			case 5:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Apagar a Conta\n\n");
 				
@@ -172,27 +173,62 @@ public class Menu {
 				contas.deletar(numero);
 				
 				keyPress();
-				
 				break;
+				
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Saque\n\n");
+				
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor do saque: ");
+					valor = leia.nextFloat();		
+				} while (valor <= 0);
+				
+				contas.sacar(numero, valor);
+				
 				keyPress();
-
 				break;
+				
 			case 7:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Depósito\n\n");
+				
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor do depósito: ");
+					valor = leia.nextFloat();		
+				} while (valor <= 0);
+				
+				contas.depositar(numero, valor);
+				
 				keyPress();
-
 				break;
+				
 			case 8:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Transferência entre Contas\n\n");
-				keyPress();
 				
+				System.out.println("Digite o número da conta de origem: ");
+				numero = leia.nextInt();
+				
+				System.out.println("\nDigite o número da conta de destino: ");
+				numeroDestino = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor da transferência: ");
+					valor = leia.nextFloat();		
+				} while (valor <= 0);
+				
+				contas.transferir(numero, numeroDestino, valor);
+				
+				keyPress();
 				break;
+				
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n");
 				keyPress();
-				
 				break;
 			}
 		}
